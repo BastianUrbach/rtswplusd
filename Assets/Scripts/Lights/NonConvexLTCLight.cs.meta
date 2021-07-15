@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b375b0acbb913cf46bfe5b1d7aed13e5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bsp: {instanceID: 0}
+  - ggxLookupTable: {fileID: 11400000, guid: ed545418c52aa2f49b3fc947eb07027b, type: 2}
+  - material: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

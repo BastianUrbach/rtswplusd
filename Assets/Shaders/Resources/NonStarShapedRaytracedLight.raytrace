@@ -1,0 +1,108 @@
+// Copyright (C) 2021, Bastian Urbach
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+// associated documentation files (the "Software"), to deal in the Software without restriction, 
+// including without limitation the rights to use, copy, modify, merge, publish, distribute,
+// sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or
+// substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+// NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+#define MAX_POLYGON_VERTEX_COUNT 32
+
+#include "RaytracedDeferredLight.hlsl"
+#include "LtcCommon.hlsl"
+#include "LtcLut.hlsl"
+#include "BspCommon.hlsl"
+#include "SolidAngleSampling.hlsl"
+
+float4 _Color;
+uint _RaysPerPixel;
+
+float3 Lighting(float3 world, float3 view, float3 diffuseColor, float3 specularColor, float3 normal, float roughness, uint seed) {
+	if (distance(world, _WorldSpaceCameraPos) > 100) return 0;
+
+	float3 localPosition = WorldToLightPos(world);
+	float NdotV = dot(normal, view);
+	float3x3 shadingSpace = BuildShadingSpace(normal, view);
+
+	float2 ggxAmplitude;
+	
+	LTC specular = NewLTC(GetLtcInverseTransformGgx(roughness, NdotV, ggxAmplitude), shadingSpace);
+	LTC diffuse = NewLTC(GetLtcInverseTransformLambert(roughness, NdotV), shadingSpace);
+
+	// Find silhouette start and end indices
+	uint2 silhouette = FindSilhouette(localPosition);
+
+	// Iterate over silhouette vertices and sum up edge contributions
+	for (uint i = silhouette.x; i < silhouette.y; i++) {
+		uint2 edge = _SilhouetteEdges[i];
+					
+		float3 a = ComputeVertexPositionNonConvex(edge.x, localPosition) - world;
+		float3 b = ComputeVertexPositionNonConvex(edge.y, localPosition) - world;
+
+		SilhouetteEdge(specular, a, b);
+		SilhouetteEdge(diffuse, a, b);
+	}
+
+	float3 d = GetIntegral(diffuse) * diffuseColor;
+	float3 s = GetIntegral(specular) * lerp(ggxAmplitude.y, ggxAmplitude.x, specularColor);
+
+	// Calculate solid angles
+	uint2 triangulation = FindTriangulation(localPosition);
+	float solidAngle = 0;
+	float solidAngles[MAX_POLYGON_VERTEX_COUNT];
+
+	for (uint i = triangulation.x; i < triangulation.y; i++) {
+		float3 A, B, C;
+		GetTriangleNonStarShaped(i - triangulation.x, triangulation, localPosition, A, B, C);
+		float s = SolidAngle(A - world, B - world, C - world);
+
+		solidAngle += s;
+		solidAngles[i - triangulation.x] = s;
+	}
+	
+	// Stochastic shadows
+	float2 specularShadowRatio = 0;
+	float2 diffuseShadowRatio = 0;
+	float3 rayOrigin = world + normal * distance(_WorldSpaceCameraPos, world) / 1000;
+
+	for (uint i = 0; i < _RaysPerPixel; i++) {
+		float3 random = float3(Random(seed), Random(seed), Random(seed));
+
+		// Select triangle
+		uint triangleIndex = 0;
+		float partialSolidAngle = solidAngles[0];
+		float selectedSolidAngle = random.z * solidAngle;
+		uint panic = 100;
+
+		while (partialSolidAngle < selectedSolidAngle && panic-- > 0) {
+			partialSolidAngle += solidAngles[++triangleIndex];
+		}
+
+		// Calculate sample direction
+		float3 A, B, C;
+		GetTriangleNonStarShaped(triangleIndex, triangulation, localPosition, A, B, C);
+		SphericalTriangle t = CreateSphericalTriangle(A - world, B - world, C - world, solidAngles[triangleIndex]);
+		float3 direction = SampleSphericalTriangle(random.xy, t);
+
+		// Raytrace and evaluate BRDF
+		float2 m = float2(!IsShadowed(rayOrigin, direction), 1);
+		// float2 m = 1;
+		specularShadowRatio += m * Evaluate(specular, direction);
+		diffuseShadowRatio += m * Evaluate(diffuse, direction);
+	}
+
+	d *= diffuseShadowRatio.x / max(0.0001, diffuseShadowRatio.y);
+	s *= specularShadowRatio.x / max(0.0001, specularShadowRatio.y);
+	
+	return (d + s) * _Color;
+	// return specularShadowRatio.x * solidAngle / _RaysPerPixel;
+}

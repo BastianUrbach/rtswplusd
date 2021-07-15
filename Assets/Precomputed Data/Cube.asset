@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ee6ab8c3a32e945a4137ac3aa8e59c, type: 3}
+  m_Name: Cube
+  m_EditorClassIdentifier: 
+  mesh: {fileID: -5495902117074765545, guid: 8457d03241413464f8105e48f96edd9a, type: 3}
+  nodes:
+  - plane: {x: 1, y: 0, z: 0, w: -0.5}
+    left: 1
+    right: 9
+  - plane: {x: 0, y: 0, z: 1, w: -0.5}
+    left: 2
+    right: 4
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 26
+    right: 3
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 27
+    right: 28
+  - plane: {x: 0, y: -0, z: -1, w: -0.5}
+    left: 5
+    right: 7
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 29
+    right: 6
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 30
+    right: 31
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 32
+    right: 8
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 33
+    right: 34
+  - plane: {x: -1, y: 0, z: 0, w: -0.5}
+    left: 10
+    right: 18
+  - plane: {x: 0, y: 0, z: 1, w: -0.5}
+    left: 11
+    right: 13
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 35
+    right: 12
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 36
+    right: 37
+  - plane: {x: 0, y: -0, z: -1, w: -0.5}
+    left: 14
+    right: 16
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 38
+    right: 15
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 39
+    right: 40
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 41
+    right: 17
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 42
+    right: 43
+  - plane: {x: 0, y: 0, z: 1, w: -0.5}
+    left: 19
+    right: 21
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 44
+    right: 20
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 45
+    right: 46
+  - plane: {x: 0, y: -0, z: -1, w: -0.5}
+    left: 22
+    right: 24
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 47
+    right: 23
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 48
+    right: 49
+  - plane: {x: 0, y: -1, z: 0, w: -0.5}
+    left: 50
+    right: 25
+  - plane: {x: 0, y: 1, z: 0, w: -0.5}
+    left: 51
+    right: 52
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -1
+    right: -7
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -7
+    right: -13
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -13
+    right: -19
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -19
+    right: -25
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -25
+    right: -31
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -31
+    right: -37
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -37
+    right: -43
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -43
+    right: -49
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -49
+    right: -53
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -53
+    right: -59
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -59
+    right: -65
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -65
+    right: -71
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -71
+    right: -77
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -77
+    right: -83
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -83
+    right: -89
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -89
+    right: -95
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -95
+    right: -101
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -101
+    right: -105
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -105
+    right: -111
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -111
+    right: -117
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -117
+    right: -121
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -121
+    right: -127
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -127
+    right: -133
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -133
+    right: -137
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -137
+    right: -141
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -141
+    right: -145
+  - plane: {x: 0, y: 0, z: 0, w: 0}
+    left: -145
+    right: -145
+  silhouettes: 00000000050000000400000001000000000000000300000007000000020000000100000000000000060000000700000005000000020000000100000000000000030000000700000005000000020000000100000004000000060000000700000003000000050000000400000006000000000000000300000002000000020000000100000004000000060000000000000003000000020000000100000000000000060000000700000003000000050000000400000001000000000000000300000002000000020000000100000000000000030000000400000005000000020000000300000000000000060000000100000002000000030000000700000006000000040000000400000005000000020000000300000007000000060000000400000005000000070000000300000000000000010000000100000002000000050000000700000006000000000000000400000005000000070000000600000000000000010000000400000005000000070000000300000000000000060000000100000002000000050000000700000006000000040000000400000005000000070000000600000003000000000000000600000007000000050000000200000001000000020000000300000007000000050000000400000007000000050000000200000003000000030000000000000001000000040000000600000007000000010000000200000005000000040000000600000000000000000000000100000004000000060000000300000000000000060000000700000001000000020000000500000004000000
+  vertices:
+  - {x: 0.5, y: -0.5, z: -0.5}
+  - {x: 0.5, y: 0.5, z: -0.5}
+  - {x: 0.5, y: 0.5, z: 0.5}
+  - {x: 0.5, y: -0.5, z: 0.5}
+  - {x: -0.5, y: 0.5, z: -0.5}
+  - {x: -0.5, y: 0.5, z: 0.5}
+  - {x: -0.5, y: -0.5, z: -0.5}
+  - {x: -0.5, y: -0.5, z: 0.5}
+  root: 0
+  isInitialized: 1

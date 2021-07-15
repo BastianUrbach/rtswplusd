@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee70f2751d308e48875767d8a5c0066, type: 3}
+  m_Name: GGX
+  m_EditorClassIdentifier: 
+  matrixLUT: {fileID: 2800000, guid: 2588e32cc4a3e424faffc3947b852140, type: 2}
+  amplitudeLUT: {fileID: 2800000, guid: f0055d36b09dd8b408e887c9b84b09a1, type: 2}

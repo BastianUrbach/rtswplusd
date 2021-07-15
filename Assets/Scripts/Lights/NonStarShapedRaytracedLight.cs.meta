@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 322cc00ca3363a64bb80382070ca1ccd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - silhouetteBSP: {instanceID: 0}
+  - triangulationBSP: {instanceID: 0}
+  - ggxLookupTable: {fileID: 11400000, guid: ed545418c52aa2f49b3fc947eb07027b, type: 2}
+  - shader: {fileID: 4807578003741378534, guid: d1c0094f9bcada94fbee1c2a3f232533, type: 3}
+  - additiveBlit: {fileID: 2100000, guid: aaa7d692effc835498880f9e36bc9aaa, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
